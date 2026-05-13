@@ -1,0 +1,128 @@
+﻿:root {
+    --avon-plum: #e91e63;
+    --avon-pink: #F3E5F0;
+    --text-dark: #333;
+}
+
+body {
+    /* Ginagamit ang parehong background para consistent */
+    background: url('../images/avon-background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.terms-container {
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.96);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    border-top: 6px solid var(--avon-plum);
+    margin: 20px;
+}
+
+h1 {
+    color: var(--avon-plum);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--avon-pink);
+    padding-bottom: 10px;
+}
+
+h3 {
+    color: var(--avon-plum);
+    margin-top: 25px;
+}
+
+p, li {
+    color: #555;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+    ul li {
+        margin-bottom: 10px;
+    }
+
+#backBtn {
+    background-color: transparent;
+    color: var(--avon-plum);
+    padding: 12px 30px;
+    border: 2px solid var(--avon-plum);
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+    #backBtn:hover {
+        background-color: var(--avon-plum);
+        color: white;
+    }
+/* FAQ Accordion Styling */
+.faq-section {
+    margin-top: 30px;
+    border-top: 1px solid var(--avon-pink);
+    padding-top: 20px;
+}
+
+.faq-item {
+    margin-bottom: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.faq-question {
+    width: 100%;
+    background: #fff;
+    color: var(--avon-plum);
+    text-align: left;
+    padding: 15px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .faq-question:after {
+        content: '\002B'; /* Plus sign */
+        font-size: 1.2rem;
+    }
+
+    .faq-question.active:after {
+        content: "\2212"; /* Minus sign */
+    }
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: #fafafa;
+}
+
+    .faq-answer p {
+        padding: 15px;
+        margin: 0;
+        font-size: 0.9rem;
+        color: #666;
+    }

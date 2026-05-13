@@ -1,0 +1,99 @@
+/* ===================== */
+/* GLOBAL STYLES */
+/* ===================== */
+
+body {
+    background: #f5f5f5;
+    overflow-x: hidden;
+}
+
+/* NAVBAR */
+.navbar-custom {
+    background-color: #e4004b;
+    color: white;
+}
+
+.navbar-custom .nav-link,
+.navbar-custom .navbar-brand,
+.navbar-custom i {
+    color: white !important;
+}
+
+/* ===================== */
+/* SIDEBAR */
+/* ===================== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 260px;
+    height: 100%;
+    background: #e4004b;
+    color: white;
+    transition: all 0.3s ease;
+    z-index: 1050;
+    padding: 20px;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px 0;
+}
+
+.menu-item {
+    border-bottom: 1px solid #f5f5f5;
+}
+
+/* DROPDOWN */
+.sidebar .submenu {
+    padding-left: 15px;
+    display: none;
+}
+
+.sidebar .menu-item.active .submenu {
+    display: block;
+}
+
+/* ===================== */
+/* OVERLAY EFFECT */
+/* ===================== */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.2);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    z-index: 1040;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===================== */
+/* CONTENT */
+/* ===================== */
+.content {
+    padding: 20px;
+}
+
+/* CARDS */
+.card-custom {
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+
+

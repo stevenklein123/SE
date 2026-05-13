@@ -1,0 +1,198 @@
+﻿:root {
+    --primary: #e91e63;
+    --primary-hover: #c2185b;
+    --primary-light: #fce4ec;
+    --text: #2d1b2e;
+    --text-light: #8e6b7a;
+    --border: #f3d1dc;
+    --sidebar-width: 260px;
+    --bg-body: #fff5f8;
+}
+
+/* =========================
+   GLOBAL LAYOUT
+========================= */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-body);
+    color: var(--text);
+}
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* =========================
+   SIDEBAR SUPPORT
+========================= */
+.sidebar {
+    width: var(--sidebar-width);
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    background: #fff;
+    border-right: 1px solid var(--border);
+    padding: 20px;
+    z-index: 3000;
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 2500;
+}
+
+    .sidebar-overlay.active {
+        display: block;
+    }
+
+/* =========================
+   MAIN CONTENT
+========================= */
+.main-content {
+    margin-left: var(--sidebar-width);
+    padding: 30px;
+    width: calc(100% - var(--sidebar-width));
+}
+
+    /* =========================
+   HEADER
+========================= */
+    .main-content h2 {
+        margin-bottom: 20px;
+        font-size: 28px;
+        color: var(--primary);
+    }
+
+/* =========================
+   FILTER BUTTONS
+========================= */
+.rank-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+    .rank-filters button {
+        padding: 8px 14px;
+        border: none;
+        border-radius: 20px;
+        background: var(--primary);
+        color: white;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.2s;
+    }
+
+        .rank-filters button:hover {
+            background: var(--primary-hover);
+        }
+
+/* =========================
+   SEARCH BAR
+========================= */
+#searchInput {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 15px;
+    border-radius: 25px;
+    border: 1px solid var(--border);
+    outline: none;
+    margin-bottom: 20px;
+}
+
+    #searchInput:focus {
+        border-color: var(--primary);
+    }
+
+/* =========================
+   USER CARD
+========================= */
+.user-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 18px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    transition: 0.2s;
+}
+
+    .user-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    .user-card h3 {
+        margin: 0;
+        font-size: 18px;
+    }
+
+    .user-card p {
+        margin: 4px 0;
+        color: var(--text-light);
+    }
+
+/* =========================
+   BADGES
+========================= */
+.badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    margin-top: 8px;
+}
+
+/* RANK COLORS */
+.Diamond {
+    background: linear-gradient(45deg, #00c853, #64dd17);
+}
+
+.Platinum {
+    background: linear-gradient(45deg, #00b0ff, #2979ff);
+}
+
+.Gold {
+    background: linear-gradient(45deg, #ffb300, #ff6f00);
+}
+
+.Silver {
+    background: linear-gradient(45deg, #90a4ae, #607d8b);
+}
+
+.Bronze {
+    background: linear-gradient(45deg, #8d6e63, #6d4c41);
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+
+    .sidebar {
+        left: -100%;
+        transition: 0.3s;
+    }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .rank-filters {
+        flex-direction: column;
+    }
+}

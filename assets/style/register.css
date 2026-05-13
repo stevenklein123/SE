@@ -1,0 +1,152 @@
+﻿:root {
+    --avon-pink: #e91e63;
+    --avon-dark: #222222;
+    --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.auth-container {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.auth-logo-img {
+    width: 100px;
+    margin-bottom: 15px;
+}
+
+.auth-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--avon-dark);
+}
+
+.form-group {
+    margin-bottom: 18px;
+    position: relative;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: #555;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #f9f9f9;
+}
+
+    .form-input:focus {
+        outline: none;
+        border-color: var(--avon-pink);
+        background: white;
+    }
+
+.passShow {
+    position: absolute;
+    right: 12px;
+    top: 35px;
+    font-size: 11px;
+    color: var(--avon-pink);
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.password-requirements {
+    background: #fdf2f8;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 12px;
+}
+
+.requirement {
+    color: #888;
+    list-style: none;
+    margin-top: 4px;
+}
+
+    .requirement.met {
+        color: #2e7d32;
+        font-weight: 600;
+    }
+
+        .requirement.met::before {
+            content: "✓ ";
+        }
+
+.btn-register {
+    width: 100%;
+    padding: 14px;
+    background: var(--avon-pink);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .btn-register:hover {
+        background: #5e1847;
+        box-shadow: 0 5px 15px rgba(125, 33, 94, 0.3);
+    }
+
+.auth-footer {
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+    .auth-footer a {
+        color: var(--avon-pink);
+        text-decoration: none;
+        font-weight: 600;
+    }

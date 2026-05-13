@@ -1,0 +1,160 @@
+﻿:root {
+    --avon-pink: #e91e63;
+    --avon-dark: #222222;
+    --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--avon-dark);
+}
+
+.auth-container {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+    padding: 50px 40px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.auth-logo-img {
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+.auth-header h1 {
+    font-family: 'Playfair Display', serif; /* Elegant font for Avon look */
+    font-size: 28px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.auth-header p {
+    color: #888;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+        outline: none;
+        border-color: var(--avon-pink);
+        background-color: #fff;
+        box-shadow: 0 0 0 4px rgba(125, 33, 94, 0.1);
+    }
+
+.btn-login {
+    width: 100%;
+    padding: 15px;
+    background: var(--avon-pink);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+    .btn-login:hover {
+        background: #5e1847;
+        transform: translateY(-1px);
+        box-shadow: 0 5px 15px rgba(125, 33, 94, 0.3);
+    }
+
+.error-message {
+    font-size: 13px;
+    color: #d93025;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+.auth-footer a {
+        color: var(--avon-pink);
+        text-decoration: none;
+        font-weight: 600;
+}
+
+.passShow {
+    cursor: pointer;
+    font-size: 12px;
+    color: #7D215E;
+    font-weight: bold;
+    display: block;
+    margin-top: 5px;
+    text-align: right;
+    transition: color 0.3s ease;
+}
+
+.passShow:hover {
+        color: #222222;
+        text-decoration: underline;
+}
+
+a, .regMess{
+    position:relative;
+    color:black;
+    right:-120px;
+    bottom:-40px;
+}
