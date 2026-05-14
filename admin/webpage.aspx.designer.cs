@@ -24,15 +24,6 @@ namespace Project_Tracking.admin
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// btnAddProduct control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddProduct;
-
-        /// <summary>
         /// btnViewProduct control.
         /// </summary>
         /// <remarks>
@@ -40,24 +31,6 @@ namespace Project_Tracking.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnViewProduct;
-
-        /// <summary>
-        /// btnUpdateProduct control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdateProduct;
-
-        /// <summary>
-        /// btnDeleteProduct control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDeleteProduct;
 
         /// <summary>
         /// txtProductName control.
@@ -114,24 +87,6 @@ namespace Project_Tracking.admin
         protected global::System.Web.UI.WebControls.Button btnSaveProduct;
 
         /// <summary>
-        /// txtProductID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProductID;
-
-        /// <summary>
-        /// btnDeleteProductSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDeleteProductSubmit;
-
-        /// <summary>
         /// txtUpdateProductID control.
         /// </summary>
         /// <remarks>
@@ -184,6 +139,33 @@ namespace Project_Tracking.admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSaveUpdate;
+
+        /// <summary>
+        /// txtProductID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtProductID;
+
+        /// <summary>
+        /// btnDeleteProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDeleteProduct;
+
+        /// <summary>
+        /// lblTotalCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalCount;
 
         /// <summary>
         /// GridView1 control.

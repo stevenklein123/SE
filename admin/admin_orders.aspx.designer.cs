@@ -11,7 +11,7 @@ namespace Project_Tracking.admin
 {
 
 
-    public partial class dashboard
+    public partial class admin_orders
     {
 
         /// <summary>
@@ -24,48 +24,48 @@ namespace Project_Tracking.admin
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// lblPendingOrders control.
+        /// txtSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPendingOrders;
+        protected global::System.Web.UI.WebControls.TextBox txtSearch;
 
         /// <summary>
-        /// lblTotalProducts control.
+        /// btnPending control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalProducts;
+        protected global::System.Web.UI.WebControls.Button btnPending;
 
         /// <summary>
-        /// lblLowStock control.
+        /// btnApproved control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLowStock;
+        protected global::System.Web.UI.WebControls.Button btnApproved;
 
         /// <summary>
-        /// lblOutStock control.
+        /// btnRejected control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOutStock;
+        protected global::System.Web.UI.WebControls.Button btnRejected;
 
         /// <summary>
-        /// lblSales control.
+        /// gvOrders control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSales;
+        protected global::System.Web.UI.WebControls.GridView gvOrders;
     }
 }

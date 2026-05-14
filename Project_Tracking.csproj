@@ -142,6 +142,8 @@
   <ItemGroup>
     <Content Include="admin\create_user.aspx" />
     <Content Include="admin\dashboard.aspx" />
+    <Content Include="admin\admin_orders.aspx" />
+    <Content Include="admin\dealers_monitoring.aspx" />
     <Content Include="admin\sales.aspx" />
     <Content Include="admin\webpage.aspx" />
     <Content Include="assets\images\avon-background.jpg" />
@@ -211,6 +213,20 @@
     </Compile>
     <Compile Include="admin\dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\admin_orders.aspx.cs">
+      <DependentUpon>admin_orders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\admin_orders.aspx.designer.cs">
+      <DependentUpon>admin_orders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\dealers_monitoring.aspx.cs">
+      <DependentUpon>dealers_monitoring.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\dealers_monitoring.aspx.designer.cs">
+      <DependentUpon>dealers_monitoring.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\sales.aspx.cs">
       <DependentUpon>sales.aspx</DependentUpon>

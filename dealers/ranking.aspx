@@ -18,7 +18,6 @@
 
 <div class="dashboard-container">
 
-    <!-- HEADER (mobile) -->
     <header class="mobile-header">
         <button type="button" class="hamburger" id="hamburger">☰</button>
         <div class="header-title">🏆 Ranking</div>

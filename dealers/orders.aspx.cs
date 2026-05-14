@@ -1,163 +1,65 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
 using System.Web.Services;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Project_Tracking.dealers
 {
-    public partial class orders : System.Web.UI.Page
+    public partial class orders : Page
     {
+        string cs = ConfigurationManager.ConnectionStrings["MyDbConn"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-        [WebMethod]
-        public static List<Order> GetOrders(string filter)
-        {
-            List<Order> orderList = new List<Order>();
-            string connStr = ConfigurationManager.ConnectionStrings["MyDbConn"].ConnectionString;
-
-            // Ensure we only return orders for the current logged in user
-            if (HttpContext.Current == null || HttpContext.Current.Session == null || HttpContext.Current.Session["UserId"] == null)
+            if (Session["UserId"] == null)
             {
-                return orderList;
+                Response.Redirect("~/auth_pages/login.aspx");
+                return;
             }
-
-            int userId = Convert.ToInt32(HttpContext.Current.Session["UserId"]);
-
-            using (MySqlConnection conn = new MySqlConnection(connStr))
-            {
-                // Build query filtering by user
-                string query = "SELECT order_id, order_date, status, total_amount, item_count FROM orders_table WHERE user_id = @uid";
-
-                if (filter != "all")
-                {
-                    query += " AND status = @status";
-                }
-
-                MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@uid", userId);
-
-                if (filter != "all")
-                {
-                    cmd.Parameters.AddWithValue("@status", filter);
-                }
-
-                try
-                {
-                    conn.Open();
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            orderList.Add(new Order
-                            {
-                                id = reader["order_id"].ToString(),
-                                // Safe conversion
-                                date = reader["order_date"] != DBNull.Value ?
-                                       Convert.ToDateTime(reader["order_date"]).ToString("yyyy-MM-dd") : "",
-                                status = reader["status"].ToString().ToLower(),
-                                total = Convert.ToDouble(reader["total_amount"]),
-                                items = Convert.ToInt32(reader["item_count"])
-                            });
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // Bubble up as a generic exception; consider logging in production
-                    throw new Exception("Database error: " + ex.Message);
-                }
-            }
-            return orderList;
         }
 
-        public class Order
+        // ✔ GET ORDERS FOR DEALER (AJAX)
+        [WebMethod(EnableSession = true)]
+        public static object GetOrders(string status)
         {
-            public string id { get; set; }
-            public string date { get; set; }
-            public string status { get; set; }
-            public double total { get; set; }
-            public int items { get; set; }
-        }
+            string cs = ConfigurationManager.ConnectionStrings["MyDbConn"].ConnectionString;
 
-        [System.Web.Services.WebMethod]
-        public static int GetUnreadCount()
-        {
-            string connStr = ConfigurationManager.ConnectionStrings["MyDbConn"].ConnectionString;
+            int userId = Convert.ToInt32(System.Web.HttpContext.Current.Session["UserId"]);
 
-            if (HttpContext.Current == null || HttpContext.Current.Session == null || HttpContext.Current.Session["UserId"] == null)
-                return 0;
+            var list = new System.Collections.Generic.List<object>();
 
-            int userId = Convert.ToInt32(HttpContext.Current.Session["UserId"]);
-
-            using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(connStr))
+            using (MySqlConnection conn = new MySqlConnection(cs))
             {
                 conn.Open();
 
-                // Get user created_at to avoid showing old/global notifications to brand new users
-                DateTime userCreated = DateTime.MinValue;
-                MySql.Data.MySqlClient.MySqlCommand getUser = new MySql.Data.MySqlClient.MySqlCommand("SELECT created_at FROM users WHERE user_id=@uid LIMIT 1", conn);
-                getUser.Parameters.AddWithValue("@uid", userId);
-                var u = getUser.ExecuteScalar();
-                if (u != null && u != DBNull.Value)
+                string sql = @"
+                    SELECT order_id, reference_code, total_amount, status, order_date
+                    FROM orders_table
+                    WHERE user_id=@userId
+                    AND (@status='all' OR status=@status)
+                    ORDER BY order_id DESC";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@userId", userId);
+                cmd.Parameters.AddWithValue("@status", status);
+
+                using (var r = cmd.ExecuteReader())
                 {
-                    userCreated = Convert.ToDateTime(u);
-                }
-
-                string query = "SELECT COUNT(*) FROM notifications WHERE is_read = 0 AND created_at >= @since";
-                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@since", userCreated);
-                return Convert.ToInt32(cmd.ExecuteScalar());
-            }
-        }
-
-        [System.Web.Services.WebMethod]
-        public static List<object> GetNotifications()
-        {
-            List<object> list = new List<object>();
-            string connStr = ConfigurationManager.ConnectionStrings["MyDbConn"].ConnectionString;
-            using (MySql.Data.MySqlClient.MySqlConnection conn = new MySql.Data.MySqlClient.MySqlConnection(connStr))
-            {
-                if (HttpContext.Current == null || HttpContext.Current.Session == null || HttpContext.Current.Session["UserId"] == null)
-                    return list;
-
-                int userId = Convert.ToInt32(HttpContext.Current.Session["UserId"]);
-
-                conn.Open();
-
-                // filter notifications to those created after user signup so new users don't see old system alerts
-                DateTime userCreated = DateTime.MinValue;
-                MySql.Data.MySqlClient.MySqlCommand getUser = new MySql.Data.MySqlClient.MySqlCommand("SELECT created_at FROM users WHERE user_id=@uid LIMIT 1", conn);
-                getUser.Parameters.AddWithValue("@uid", userId);
-                var u = getUser.ExecuteScalar();
-                if (u != null && u != DBNull.Value)
-                {
-                    userCreated = Convert.ToDateTime(u);
-                }
-
-                string query = "SELECT message, is_read, created_at FROM notifications WHERE created_at >= @since ORDER BY created_at DESC LIMIT 10";
-                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@since", userCreated);
-
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
+                    while (r.Read())
                     {
                         list.Add(new
                         {
-                            message = reader["message"].ToString(),
-                            is_read = Convert.ToBoolean(reader["is_read"]),
-                            date = Convert.ToDateTime(reader["created_at"]).ToString("MMM dd, hh:mm tt")
+                            id = r["order_id"],
+                            refcode = r["reference_code"],
+                            total = r["total_amount"],
+                            status = r["status"],
+                            date = Convert.ToDateTime(r["order_date"]).ToString("MMM dd yyyy")
                         });
                     }
                 }
             }
+
             return list;
         }
     }
