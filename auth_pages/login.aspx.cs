@@ -1,28 +1,23 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Security.Claims;
 using System.Security.Cryptography;
-using System.Text;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace Project_Tracking.auth_pages
 {
-    public partial class login : System.Web.UI.Page
+    public partial class login : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserId"] != null)
-            {
-                Response.Redirect("~/dealers/dashboard.aspx");
-            }
+            // ❌ REMOVE AUTO REDIRECT (important fix)
+            // login page should NEVER auto redirect
         }
+
         protected void BtnLogin_Click(object sender, EventArgs e)
         {
             string username = txtUsername.Text.Trim();
@@ -36,7 +31,7 @@ namespace Project_Tracking.auth_pages
 
             if (Authenticate(username, password))
             {
-                Response.Redirect("~/dealers/dashboard.aspx");
+                RedirectUser(Session["Role"].ToString());
             }
             else
             {
@@ -52,7 +47,11 @@ namespace Project_Tracking.auth_pages
             {
                 con.Open();
 
-                string sql = "SELECT user_id, username, password_hash, role FROM users WHERE username=@username LIMIT 1";
+                string sql = @"
+                    SELECT user_id, username, password_hash, role
+                    FROM users
+                    WHERE username = @username
+                    LIMIT 1";
 
                 using (MySqlCommand cmd = new MySqlCommand(sql, con))
                 {
@@ -67,21 +66,16 @@ namespace Project_Tracking.auth_pages
                             if (VerifyPassword(password, hash))
                             {
                                 string userId = reader["user_id"].ToString();
-                                string usernameValue = reader["username"].ToString();
-                                string role = reader["role"].ToString();
+                                string dbUsername = reader["username"].ToString();
+                                string role = reader["role"].ToString().ToLower(); // IMPORTANT FIX
 
                                 Session["UserId"] = userId;
-                                Session["Username"] = usernameValue;
+                                Session["Username"] = dbUsername;
                                 Session["Role"] = role;
                                 Session["IsLoggedIn"] = true;
 
-                                // UNIQUE CHAT SESSION
-                                Session["ChatSessionId"] =
-                                    userId + "-" + Guid.NewGuid().ToString();
-
-                                // JWT TOKEN FOR CHATBASE
-                                Session["chat_token"] =
-                                    GenerateChatToken(userId, usernameValue);
+                                Session["ChatSessionId"] = Guid.NewGuid().ToString();
+                                Session["chat_token"] = GenerateChatToken(userId, dbUsername, role);
 
                                 return true;
                             }
@@ -93,6 +87,26 @@ namespace Project_Tracking.auth_pages
             return false;
         }
 
+        private void RedirectUser(string role)
+        {
+            role = role.ToLower(); // safety fix
+
+            switch (role)
+            {
+                case "admin":
+                    Response.Redirect("~/admin/dashboard.aspx");
+                    break;
+
+                case "dealer":
+                    Response.Redirect("~/dealers/dashboard.aspx");
+                    break;
+
+                default:
+                    Response.Redirect("~/user/dashboard.aspx");
+                    break;
+            }
+        }
+
         private bool VerifyPassword(string password, string hash)
         {
             string[] parts = hash.Split(':');
@@ -101,42 +115,36 @@ namespace Project_Tracking.auth_pages
             byte[] salt = Convert.FromBase64String(parts[1]);
             string stored = parts[2];
 
-            using (var pbkdf2 = new Rfc2898DeriveBytes(password, salt, iter, HashAlgorithmName.SHA256))
+            using (var pbkdf2 = new Rfc2898DeriveBytes(
+                password,
+                salt,
+                iter,
+                HashAlgorithmName.SHA256))
             {
                 string newHash = Convert.ToBase64String(pbkdf2.GetBytes(32));
                 return newHash == stored;
             }
         }
-        private string GenerateChatToken(
-        string userId,
-        string username)
+
+        private string GenerateChatToken(string userId, string username, string role)
         {
-            var secret =
-                ConfigurationManager
-                .AppSettings["ChatSecret"];
+            var secret = ConfigurationManager.AppSettings["ChatSecret"];
 
-            var key =
-                new SymmetricSecurityKey(
-                    Encoding.UTF8.GetBytes(secret));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var creds =
-                new SigningCredentials(
-                    key,
-                    SecurityAlgorithms.HmacSha256);
+            var token = new JwtSecurityToken(
+                claims: new[]
+                {
+                    new Claim("user_id", userId),
+                    new Claim("username", username),
+                    new Claim("role", role)
+                },
+                expires: DateTime.Now.AddHours(1),
+                signingCredentials: creds
+            );
 
-            var token =
-                new JwtSecurityToken(
-                    claims: new[]
-                    {
-                new Claim("user_id", userId),
-                new Claim("username", username)
-                    },
-                    expires: DateTime.Now.AddHours(1),
-                    signingCredentials: creds
-                );
-
-            return new JwtSecurityTokenHandler()
-                .WriteToken(token);
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace Project_Tracking.dealers
 {
-    public partial class transaction : System.Web.UI.Page
+    public partial class transactions : System.Web.UI.Page
     {
             protected void Page_Load(object sender, EventArgs e)
             {

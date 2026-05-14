@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="transaction.aspx.cs" Inherits="Project_Tracking.dealers.transaction" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="transactions.aspx.cs" Inherits="Project_Tracking.dealers.transactions" %>
 
 <%@ Register Src="~/views/sidebar.ascx" TagPrefix="uc" TagName="Sidebar" %>
 
@@ -61,10 +61,52 @@
         </div>
     </div>
 </div>
+<script>
 
-<script src="<%= ResolveUrl("~/assets/js/script.js") %>"></script>
-<script src="<%= ResolveUrl("~/assets/js/notifications.js") %>"></script>
-<script src="<%= ResolveUrl("~/assets/js/transactions.js") %>"></script>
-<script src="<%= ResolveUrl("~/assets/js/avery.js") %>"></script>
+    // CLEAR OLD CHAT CACHE
+    localStorage.removeItem("chatbase-session");
+
+    sessionStorage.removeItem("chatbase-session");
+
+    // CHATBASE CONFIG
+    window.chatbaseConfig = {
+        chatbotId: "tARzRJPxLzrHZlYqWgswv",
+        domain: "www.chatbase.co"
+    };
+
+    (function () {
+
+        var script =
+            document.createElement("script");
+
+        script.src =
+            "https://www.chatbase.co/embed.min.js";
+
+        script.defer = true;
+
+        script.onload = function () {
+
+            setTimeout(function () {
+
+                // IDENTIFY CURRENT USER
+                window.chatbase("identify", {
+                    token: '<%= Session["chat_token"] %>'
+                });
+
+                // FORCE NEW CONVERSATION
+                window.chatbase("newConversation");
+
+            }, 1500);
+
+        };
+
+        document.body.appendChild(script);
+
+    })();
+
+</script>
+<script src="<%= ResolveUrl("../assets/script/script.js") %>"></script>
+<script src="<%= ResolveUrl("../assets/script/notifications.js") %>"></script>
+<script src="<%= ResolveUrl("../assets/script/transactions.js") %>"></script>
 </body>
 </html>

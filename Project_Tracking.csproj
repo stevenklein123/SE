@@ -140,7 +140,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\create_user.aspx" />
     <Content Include="admin\dashboard.aspx" />
+    <Content Include="admin\sales.aspx" />
     <Content Include="admin\webpage.aspx" />
     <Content Include="assets\images\avon-background.jpg" />
     <Content Include="assets\images\avon.png" />
@@ -188,19 +190,34 @@
     <Content Include="dealers\dashboard.aspx" />
     <Content Include="dealers\orders.aspx" />
     <Content Include="dealers\ranking.aspx" />
-    <Content Include="dealers\transaction.aspx" />
+    <Content Include="dealers\transactions.aspx" />
     <Content Include="Global.asax" />
     <Content Include="views\personal_info.aspx" />
     <Content Include="views\sidebar.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\Class1.cs" />
+    <Compile Include="admin\create_user.aspx.cs">
+      <DependentUpon>create_user.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\create_user.aspx.designer.cs">
+      <DependentUpon>create_user.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admin\dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\sales.aspx.cs">
+      <DependentUpon>sales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\sales.aspx.designer.cs">
+      <DependentUpon>sales.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\webpage.aspx.cs">
       <DependentUpon>webpage.aspx</DependentUpon>
@@ -279,12 +296,12 @@
     <Compile Include="dealers\ranking.aspx.designer.cs">
       <DependentUpon>ranking.aspx</DependentUpon>
     </Compile>
-    <Compile Include="dealers\transaction.aspx.cs">
-      <DependentUpon>transaction.aspx</DependentUpon>
+    <Compile Include="dealers\transactions.aspx.cs">
+      <DependentUpon>transactions.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="dealers\transaction.aspx.designer.cs">
-      <DependentUpon>transaction.aspx</DependentUpon>
+    <Compile Include="dealers\transactions.aspx.designer.cs">
+      <DependentUpon>transactions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

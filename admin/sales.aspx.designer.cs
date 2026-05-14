@@ -11,7 +11,7 @@ namespace Project_Tracking.admin
 {
 
 
-    public partial class dashboard
+    public partial class sales
     {
 
         /// <summary>
@@ -24,39 +24,48 @@ namespace Project_Tracking.admin
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// lblTotalProducts control.
+        /// ddlMonth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalProducts;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMonth;
 
         /// <summary>
-        /// lblLowStock control.
+        /// ddlYear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLowStock;
+        protected global::System.Web.UI.WebControls.DropDownList ddlYear;
 
         /// <summary>
-        /// lblOutStock control.
+        /// btnFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOutStock;
+        protected global::System.Web.UI.WebControls.Button btnFilter;
 
         /// <summary>
-        /// lblSales control.
+        /// lblTotalRevenue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSales;
+        protected global::System.Web.UI.WebControls.Label lblTotalRevenue;
+
+        /// <summary>
+        /// gvSales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvSales;
     }
 }

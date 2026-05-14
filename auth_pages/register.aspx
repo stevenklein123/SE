@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="Project_Tracking.auth_pages.register" %>
+﻿l<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="Project_Tracking.auth_pages.register" %>
 
 <!DOCTYPE html>
 <html>

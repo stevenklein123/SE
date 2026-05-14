@@ -17,7 +17,7 @@
 
         <a href="/dealers/dashboard.aspx" class="nav-item">🏠 Products</a>
         <a href="/dealers/cart.aspx" class="nav-item">🛒 Cart</a>
-        <a href="/dealers/transaction.aspx" class="nav-item">💳 Transactions</a>
+        <a href="/dealers/transactions.aspx" class="nav-item">💳 Transactions</a>
         <a href="/dealers/orders.aspx" class="nav-item">📄 Orders</a>
         <a href="/dealers/ranking.aspx" class="nav-item">🏆 Ranking</a>
         <a href="/dealers/benefits.aspx" class="nav-item">📈 Benefits</a>

@@ -109,111 +109,53 @@
 
     </div>
 </div>
+
 <script>
+
+    // CLEAR OLD CHAT CACHE
+    localStorage.removeItem("chatbase-session");
+
+    sessionStorage.removeItem("chatbase-session");
+
+    // CHATBASE CONFIG
     window.chatbaseConfig = {
-        chatbotId: "bebNRvwQS_WvHNUnRo4sS",
-
-        userId: "<%= Session["ChatSessionId"] %>",
-
-    userName: "<%= Session["Username"] %>",
-    userRole: "<%= Session["Role"] %>"
+        chatbotId: "tARzRJPxLzrHZlYqWgswv",
+        domain: "www.chatbase.co"
     };
-</script>
-<script>
-    window.chatbaseConfig = {
 
-        chatbotId: "bebNRvwQS_WvHNUnRo4sS",
+    (function () {
 
-        userId: "<%= Session["ChatSessionId"] %>",
-
-    userName: "<%= Session["Username"] %>",
-
-    userRole: "<%= Session["Role"] %>"
-};
-
-(function () {
-
-    if (!window.chatbase ||
-        window.chatbase("getState") !== "initialized") {
-
-        window.chatbase = (...args) => {
-
-            if (!window.chatbase.q) {
-                window.chatbase.q = [];
-            }
-
-            window.chatbase.q.push(args);
-        };
-
-        window.chatbase = new Proxy(
-            window.chatbase,
-            {
-                get(target, prop) {
-
-                    if (prop === "q") {
-                        return target.q;
-                    }
-
-                    return (...args) =>
-                        target(prop, ...args);
-                }
-            }
-        );
-    }
-
-    function loadChatbase() {
-
-        const script =
+        var script =
             document.createElement("script");
 
         script.src =
             "https://www.chatbase.co/embed.min.js";
 
-        script.id =
-            "bebNRvwQS_WvHNUnRo4sS";
-
-        script.domain =
-            "www.chatbase.co";
+        script.defer = true;
 
         script.onload = function () {
 
-            const token =
-                "<%= Session["chat_token"] %>";
+            setTimeout(function () {
 
-                if (token && window.chatbase) {
+                // IDENTIFY CURRENT USER
+                window.chatbase("identify", {
+                    token: '<%= Session["chat_token"] %>'
+                });
 
-                    window.chatbase(
-                        "identify",
-                        {
-                            token: token
-                        }
-                    );
-                }
-            };
+                // FORCE NEW CONVERSATION
+                window.chatbase("newConversation");
 
-            document.body.appendChild(script);
-        }
+            }, 1500);
 
-        if (document.readyState === "complete") {
+        };
 
-            loadChatbase();
-
-        } else {
-
-            window.addEventListener(
-                "load",
-                loadChatbase
-            );
-        }
+        document.body.appendChild(script);
 
     })();
+
 </script>
-
-
-
-<script src="<%= ResolveUrl("~/assets/js/script.js") %>"></script>
-<script src="<%= ResolveUrl("~/assets/js/notifications.js") %>"></script>
-
+<script src="<%= ResolveUrl("~/assets/script/script.js") %>"></script>
+<script src="<%= ResolveUrl("~/assets/script/notifications.js") %>"></script>
 </body>
 
 

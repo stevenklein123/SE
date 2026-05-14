@@ -11,7 +11,7 @@ namespace Project_Tracking.dealers
 {
 
 
-    public partial class transaction
+    public partial class transactions
     {
 
         /// <summary>
