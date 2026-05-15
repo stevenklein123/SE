@@ -19,7 +19,6 @@ namespace Project_Tracking.dealers
             }
         }
 
-        // ✔ GET ORDERS FOR DEALER (AJAX)
         [WebMethod(EnableSession = true)]
         public static object GetOrders(string status)
         {
@@ -34,11 +33,19 @@ namespace Project_Tracking.dealers
                 conn.Open();
 
                 string sql = @"
-                    SELECT order_id, reference_code, total_amount, status, order_date
-                    FROM orders_table
-                    WHERE user_id=@userId
-                    AND (@status='all' OR status=@status)
-                    ORDER BY order_id DESC";
+                    SELECT 
+                        o.order_id,
+                        p.reference_no,
+                        o.total_amount,
+                        o.status,
+                        o.order_date,
+                        o.item_count,
+                        o.shipping_method
+                    FROM orders_table o
+                    LEFT JOIN payments p ON p.order_id = o.order_id
+                    WHERE o.user_id = @userId
+                    AND (@status = 'all' OR o.status = @status)
+                    ORDER BY o.order_id DESC";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@userId", userId);
@@ -51,10 +58,12 @@ namespace Project_Tracking.dealers
                         list.Add(new
                         {
                             id = r["order_id"],
-                            refcode = r["reference_code"],
+                            refcode = r["reference_no"],
                             total = r["total_amount"],
                             status = r["status"],
-                            date = Convert.ToDateTime(r["order_date"]).ToString("MMM dd yyyy")
+                            date = Convert.ToDateTime(r["order_date"]).ToString("MMM dd yyyy"),
+                            itemCount = r["item_count"],
+                            shipping = r["shipping_method"]
                         });
                     }
                 }

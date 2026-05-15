@@ -13,18 +13,17 @@ function initProfileView() {
     if (saveBtn) saveBtn.addEventListener('click', saveProfileView);
     if (cancelBtn) cancelBtn.addEventListener('click', exitEditMode);
 
-    // Ensure inputs are disabled by default (read-only view). JS will enable on edit.
+    // Hide inputs by default, show spans
     document.querySelectorAll('.edit-input').forEach(i => {
-        try { i.style.display = i.style.display || 'none'; } catch (e) {}
+        i.style.display = 'none';
         i.disabled = true;
     });
 
-    // store original values so Cancel can revert changes
     window._profileOriginal = {};
 }
 
 function loadProfileView() {
-    fetch('/view/personal_info.aspx/GetProfile', {
+    fetch('/views/personal_info.aspx/GetProfile', {
         method: 'POST',
         credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' },
@@ -65,31 +64,34 @@ function setText(id, v) { const e = document.getElementById(id); if (e) e.innerT
 function setVal(id, v) { const e = document.getElementById(id); if (e) e.value = v || ''; }
 
 function enterEditMode() {
-    // cache original values
     document.querySelectorAll('[id^="span"]').forEach(s => {
-        const id = s.id.replace('span', '');
-        window._profileOriginal[id] = s.innerText;
+        const key = s.id.replace('span', '');
+        window._profileOriginal[key] = s.innerText;
     });
 
-    document.querySelectorAll('.edit-input').forEach(i => { i.style.display = 'block'; i.disabled = false; });
+    document.querySelectorAll('.edit-input').forEach(i => {
+        i.style.display = 'block';
+        i.disabled = false;
+    });
     document.querySelectorAll('[id^="span"]').forEach(s => s.style.display = 'none');
+
     document.getElementById('btnEdit').style.display = 'none';
     document.getElementById('btnSave').style.display = 'inline-block';
     document.getElementById('btnCancel').style.display = 'inline-block';
 }
 
 function exitEditMode() {
-    // revert inputs to original values when cancelling
     document.querySelectorAll('.edit-input').forEach(i => {
-        const id = i.id.replace('input', '');
-        if (window._profileOriginal && window._profileOriginal[id] !== undefined) {
-            if (i.tagName.toLowerCase() === 'textarea') i.value = window._profileOriginal[id];
-            else i.value = window._profileOriginal[id];
+        const key = i.id.replace('input', '');
+        if (window._profileOriginal && window._profileOriginal[key] !== undefined) {
+            i.value = window._profileOriginal[key];
         }
         i.style.display = 'none';
         i.disabled = true;
     });
+
     document.querySelectorAll('[id^="span"]').forEach(s => s.style.display = 'inline');
+
     document.getElementById('btnEdit').style.display = 'inline-block';
     document.getElementById('btnSave').style.display = 'none';
     document.getElementById('btnCancel').style.display = 'none';
@@ -110,7 +112,7 @@ function saveProfileView() {
         zipCode: document.getElementById('inputZip').value.trim()
     };
 
-    fetch('/view/personal_info.aspx/UpdateProfile', {
+    fetch('/views/personal_info.aspx/UpdateProfile', {
         method: 'POST',
         credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' },

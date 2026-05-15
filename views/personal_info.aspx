@@ -20,7 +20,8 @@
                 <h2>🧑‍💼 My Profile</h2>
 
                 <div class="info-card">
-                    <asp:Label ID="lblMsg" runat="server" ClientIDMode="Static"></asp:Label>
+                    <asp:Label ID="lblMsg" runat="server" ClientIDMode="Static" 
+                    style="display:block; margin-bottom:8px;"></asp:Label>
 
                     <div class="info-row">
                                 <div class="info-label">First Name</div>

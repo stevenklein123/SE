@@ -1,25 +1,24 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
-    fetchOrders('all'); // Tawagin ang database sa unang load
+    fetchOrders('all');
 
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', function () {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-            fetchOrders(this.dataset.filter); // Mag-fetch base sa filter
+            fetchOrders(this.dataset.filter);
         });
     });
 });
 
 function fetchOrders(filterValue) {
-    // Gamit ang Fetch API para tawagin ang WebMethod sa C#
     fetch('orders.aspx/GetOrders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ filter: filterValue })
+        body: JSON.stringify({ status: filterValue })
     })
         .then(response => response.json())
         .then(data => {
-            renderOrders(data.d); // 'data.d' ang standard return ng ASP.NET WebMethods
+            renderOrders(data.d);
         })
         .catch(err => console.error('Error fetching orders:', err));
 }
@@ -47,18 +46,22 @@ function renderOrders(orders) {
             <div class="order-card-body">
                 <div class="order-meta">
                     <div class="meta-item">
+                        <label>Reference No</label>
+                        <strong>${order.refcode ?? 'N/A'}</strong>
+                    </div>
+                    <div class="meta-item">
                         <label>Total Amount</label>
-                        <strong>₱${order.total.toLocaleString(undefined, { minimumFractionDigits: 2 })}</strong>
+                        <strong>₱${parseFloat(order.total).toLocaleString(undefined, { minimumFractionDigits: 2 })}</strong>
                     </div>
                     <div class="meta-item">
                         <label>Items</label>
-                        <strong>${order.items} Qty</strong>
+                        <strong>${order.itemCount} Qty</strong>
+                    </div>
+                    <div class="meta-item">
+                        <label>Shipping</label>
+                        <strong>${order.shipping}</strong>
                     </div>
                 </div>
-            </div>
-            <div class="order-card-actions">
-                <button type="button" class="btn-outline">Invoice</button>
-                <button type="button" class="btn-primary">Track</button>
             </div>
         </div>
     `).join('');

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ranking.aspx.cs" Inherits="Project_Tracking.dealers.ranking" %>
+﻿﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ranking.aspx.cs" Inherits="Project_Tracking.dealers.ranking" %>
 
 <%@ Register Src="~/views/sidebar.ascx" TagPrefix="uc" TagName="Sidebar" %>
 

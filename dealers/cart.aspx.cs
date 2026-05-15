@@ -12,7 +12,7 @@ namespace Project_Tracking.dealers
     public partial class cart : System.Web.UI.Page
     {
 
-        protected void Page_Load(object sender, EventArgs e) {}
+        protected void Page_Load(object sender, EventArgs e) { }
         string ConnStr => ConfigurationManager.ConnectionStrings["MyDbConn"].ConnectionString;
 
         // ================= GET CART =================
@@ -366,6 +366,7 @@ namespace Project_Tracking.dealers
                 trx.Parameters.AddWithValue("@total", total);
 
                 long transactionId =
+
                     Convert.ToInt64(trx.ExecuteScalar());
 
                 // ================= ITEMS + STOCK =================
@@ -397,15 +398,6 @@ namespace Project_Tracking.dealers
 
                     ins.ExecuteNonQuery();
 
-                    MySqlCommand stock = new MySqlCommand(@"
-                    UPDATE products
-                    SET stock = stock - @qty
-                    WHERE product_id=@pid", conn);
-
-                    stock.Parameters.AddWithValue("@qty", i.qty);
-                    stock.Parameters.AddWithValue("@pid", i.pid);
-
-                    stock.ExecuteNonQuery();
                 }
 
                 // ================= GET EMAIL =================

@@ -123,33 +123,30 @@ function updateTotal(subtotal) {
 }
 
 function checkout() {
-
     const shipping = document.getElementById("shippingMethod").value;
     const paymentMethod = document.getElementById("paymentMethod").value;
 
     fetch("cart.aspx/Checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            shipping: shipping,
-            paymentMethod: paymentMethod
-        })
+        body: JSON.stringify({ shipping: shipping, paymentMethod: paymentMethod })
     })
         .then(res => res.json())
         .then(res => {
-
             const d = res.d;
 
             if (d && d.error) {
-                alert(d.error);
+                showMessageModal("❌", "Checkout Failed", d.error);
                 return;
             }
 
-            alert(`Payment successful via ${paymentMethod}`);
-
-            loadCart();
-
-        })
+            showMessageModal(
+                "✅",
+                "Order Placed!",
+                `Payment successful via ${paymentMethod}. A confirmation has been sent to your email.`,
+                () => loadCart()
+            );
+        });
 }
 
 function clearCart() {
@@ -242,4 +239,22 @@ function addToCart(btn) {
             alert("Added to cart!");
             loadCartCount();
         });
+}
+
+let _messageModalCallback = null;
+
+function showMessageModal(icon, title, body, callback) {
+    document.getElementById("messageModalIcon").innerText = icon;
+    document.getElementById("messageModalTitle").innerText = title;
+    document.getElementById("messageModalBody").innerText = body;
+    _messageModalCallback = callback || null;
+    document.getElementById("messageModal").classList.add("active");
+}
+
+function hideMessageModal() {
+    document.getElementById("messageModal").classList.remove("active");
+    if (_messageModalCallback) {
+        _messageModalCallback();
+        _messageModalCallback = null;
+    }
 }

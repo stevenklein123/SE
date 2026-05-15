@@ -3,6 +3,7 @@ CodeBehind="admin_orders.aspx.cs"
 Inherits="Project_Tracking.admin.admin_orders" %>
 
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 
@@ -13,8 +14,7 @@ Inherits="Project_Tracking.admin.admin_orders" %>
 
     <link rel="icon" type="image/png" href="../assets/images/avon.png" />
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
 
     <style>
@@ -25,11 +25,10 @@ Inherits="Project_Tracking.admin.admin_orders" %>
         }
 
         body {
-            background-color: #f5f6fa;
+            background-color: #f8f9fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* SIDEBAR */
         .sidebar {
             position: fixed;
             top: 0;
@@ -42,9 +41,7 @@ Inherits="Project_Tracking.admin.admin_orders" %>
             z-index: 1050;
         }
 
-        .sidebar.active {
-            left: 0;
-        }
+        .sidebar.active { left: 0; }
 
         .sidebar-header {
             padding: 2rem 1.5rem;
@@ -65,7 +62,7 @@ Inherits="Project_Tracking.admin.admin_orders" %>
 
         .menu-item a:hover,
         .menu-item.active a {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255,255,255,0.05);
             color: var(--avon-pink);
         }
 
@@ -84,30 +81,6 @@ Inherits="Project_Tracking.admin.admin_orders" %>
             visibility: visible;
         }
 
-        /* NAVBAR */
-        .navbar-custom {
-            background: white;
-            box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
-        }
-
-        /* CARD */
-        .card-box {
-            background: #fff;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        }
-
-        .top-title {
-            font-weight: bold;
-            font-size: 28px;
-        }
-
-        .table td {
-            vertical-align: middle;
-        }
-
-        /* STATUS */
         .status-pending {
             background: #fff3cd;
             color: #856404;
@@ -139,10 +112,6 @@ Inherits="Project_Tracking.admin.admin_orders" %>
             white-space: nowrap;
         }
 
-        .btn-action {
-            min-width: 100px;
-        }
-
     </style>
 
 </head>
@@ -151,147 +120,90 @@ Inherits="Project_Tracking.admin.admin_orders" %>
 
 <form id="form1" runat="server">
 
-    <!-- OVERLAY -->
-    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
 
-    <!-- SIDEBAR -->
-    <div class="sidebar" id="sidebar">
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
 
-        <div class="sidebar-header">
-            <h4 class="mb-0 fw-bold" style="letter-spacing:2px;">
-                AVON ADMIN
-            </h4>
-        </div>
-
-        <div class="mt-3">
-
-            <div class="menu-item">
-                <a href="dashboard.aspx">
-                    <i class="bi bi-speedometer2"></i>
-                    DASHBOARD
-                </a>
-            </div>
-
-            <div class="menu-item">
-                <a href="sales.aspx">
-                    <i class="bi bi-graph-up"></i>
-                    SALES ANALYTICS
-                </a>
-            </div>
-
-            <div class="menu-item">
-                <a href="webpage.aspx">
-                    <i class="bi bi-box-seam"></i>
-                    INVENTORY
-                </a>
-            </div>
-
-            <div class="menu-item">
-                <a href="dealers.aspx">
-                    <i class="bi bi-people"></i>
-                    DEALERS
-                </a>
-            </div>
-
-            <div class="menu-item active">
-                <a href="admin_orders.aspx">
-                    <i class="bi bi-cart-check"></i>
-                    ORDERS
-                </a>
-            </div>
-
-        </div>
-
+    <div class="sidebar-header">
+        <h4 class="mb-0 fw-bold" style="letter-spacing:2px;">AVON ADMIN</h4>
     </div>
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-custom px-4 py-3 d-flex justify-content-between align-items-center">
+    <div class="mt-3">
+        <div class="menu-item"><a href="dashboard.aspx"><i class="bi bi-speedometer2"></i> DASHBOARD</a></div>
+        <div class="menu-item"><a href="sales.aspx"><i class="bi bi-graph-up"></i> SALES ANALYTICS</a></div>
+        <div class="menu-item"><a href="webpage.aspx"><i class="bi bi-box-seam"></i> INVENTORY</a></div>
+        <div class="menu-item"><a href="dealers_monitoring.aspx"><i class="bi bi-people"></i> DEALERS</a></div>
+        <div class="menu-item active"><a href="admin_orders.aspx"><i class="bi bi-cart-check"></i> ORDERS</a></div>
+        <div class="menu-item"><a href="../auth_pages/logout.aspx"><i class="bi bi-box-arrow-right"></i> LOGOUT</a></div>
+    </div>
 
-        <button type="button" class="btn" onclick="toggleSidebar()">
+</div>
 
-            <i class="bi bi-list fs-3" style="color: var(--avon-pink);"></i>
+<!-- NAVBAR -->
+<nav class="navbar shadow-sm px-3 d-flex justify-content-between align-items-center"
+     style="background-color:#e91e63;">
 
-        </button>
+    <button type="button" class="btn" onclick="toggleSidebar()" style="color:white;">
+        <i class="bi bi-list fs-3"></i>
+    </button>
 
-        <div class="d-flex align-items-center gap-3">
-
-            <span class="text-muted d-none d-md-inline">
-                Orders Management
-            </span>
-
-            <div class="rounded-circle p-2"
-                 style="background: rgba(233,30,99,0.1);">
-
-                <i class="bi bi-cart-check fs-4"
-                   style="color: var(--avon-pink);"></i>
-
-            </div>
-
+    <div class="d-flex align-items-center gap-3">
+        <span class="d-none d-md-inline text-white fw-semibold">
+            Orders Management
+        </span>
+        <div class="rounded-circle p-2" style="background:rgba(255,255,255,0.2);">
+            <i class="bi bi-cart-check fs-4 text-white"></i>
         </div>
+    </div>
 
-    </nav>
+</nav>
 
-    <!-- MAIN CONTENT -->
-    <div class="container-fluid p-4">
+<!-- STATUS MESSAGE BELOW NAVBAR -->
+<div id="statusMessage" runat="server" visible="false"
+     class="alert mx-4 mt-3 mb-0" role="alert">
+    <asp:Literal ID="lblMessage" runat="server" />
+</div>
 
-        <div class="card-box">
+<!-- MAIN CONTENT -->
+<div class="container-fluid p-4">
 
-            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+    <div class="card shadow-lg border-0 rounded-4">
 
-                <div>
+        <div class="card-body">
 
-                    <h2 class="top-title mb-1">
-                        <i class="bi bi-cart-check-fill text-primary"></i>
-                        Orders Management
-                    </h2>
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
 
-                    <small class="text-muted">
-                        Manage customer orders and references
-                    </small>
+                <h2>
+                    <i class="bi bi-cart-check-fill text-primary"></i>
+                    Orders Management
+                </h2>
 
+                <div class="d-flex gap-2">
+                    <asp:TextBox ID="txtSearch" runat="server"
+                        CssClass="form-control"
+                        placeholder="Search Reference No" />
+                    <asp:Button ID="btnSearch" runat="server"
+                        Text="Search"
+                        CssClass="btn btn-primary"
+                        OnClick="btnSearch_Click" />
                 </div>
 
-                <asp:TextBox
-                    ID="txtSearch"
-                    runat="server"
-                    CssClass="form-control"
-                    Width="250px"
-                    placeholder="Search Reference No" />
-
             </div>
 
-            <!-- FILTER BUTTONS -->
-            <div class="mb-4 d-flex gap-2 flex-wrap">
-
-                <asp:Button
-                    ID="btnPending"
-                    runat="server"
-                    Text="Pending"
-                    CssClass="btn btn-warning"
-                    OnClick="FilterPending" />
-
-                <asp:Button
-                    ID="btnApproved"
-                    runat="server"
-                    Text="Approved"
-                    CssClass="btn btn-success"
-                    OnClick="FilterApproved" />
-
-                <asp:Button
-                    ID="btnRejected"
-                    runat="server"
-                    Text="Rejected"
-                    CssClass="btn btn-danger"
-                    OnClick="FilterRejected" />
-
+            <div class="mb-3 d-flex gap-2 flex-wrap">
+                <asp:Button ID="btnPending" runat="server" Text="Pending"
+                    CssClass="btn btn-warning" OnClick="FilterPending" />
+                <asp:Button ID="btnApproved" runat="server" Text="Approved"
+                    CssClass="btn btn-success" OnClick="FilterApproved" />
+                <asp:Button ID="btnRejected" runat="server" Text="Rejected"
+                    CssClass="btn btn-danger" OnClick="FilterRejected" />
             </div>
 
-            <!-- TABLE -->
             <div class="table-responsive">
 
-                <asp:GridView
-                    ID="gvOrders"
-                    runat="server"
+                <asp:GridView ID="gvOrders" runat="server"
                     AutoGenerateColumns="False"
                     CssClass="table table-hover align-middle"
                     GridLines="None"
@@ -300,79 +212,39 @@ Inherits="Project_Tracking.admin.admin_orders" %>
                     <HeaderStyle CssClass="table-dark" />
 
                     <Columns>
-
-                        <asp:BoundField
-                            DataField="order_id"
-                            HeaderText="Order ID" />
-
-                        <asp:BoundField
-                            DataField="reference_no"
-                            HeaderText="Reference No" />
-
-                        <asp:BoundField
-                            DataField="username"
-                            HeaderText="Customer" />
-
-                        <asp:BoundField
-                            DataField="item_count"
-                            HeaderText="Items" />
-
-                        <asp:BoundField
-                            DataField="shipping_method"
-                            HeaderText="Shipping" />
-
-                        <asp:BoundField
-                            DataField="total_amount"
-                            HeaderText="Total"
-                            DataFormatString="₱{0:N2}" />
-
-                        <asp:BoundField
-                            DataField="order_date"
-                            HeaderText="Order Date"
-                            DataFormatString="{0:MMM dd, yyyy}" />
+                        <asp:BoundField DataField="order_id"       HeaderText="Order ID" />
+                        <asp:BoundField DataField="reference_no"   HeaderText="Reference No" />
+                        <asp:BoundField DataField="username"       HeaderText="Customer" />
+                        <asp:BoundField DataField="item_count"     HeaderText="Items" />
+                        <asp:BoundField DataField="shipping_method" HeaderText="Shipping" />
+                        <asp:BoundField DataField="total_amount"   HeaderText="Total" />
+                        <asp:BoundField DataField="order_date"     HeaderText="Date" />
 
                         <asp:TemplateField HeaderText="Status">
-
                             <ItemTemplate>
-
-                                <span class='<%# GetStatusClass(Eval("status").ToString()) %>'>
-
+                                <span class='<%# GetStatusClass(Eval("status") == null ? "" : Eval("status").ToString()) %>'>
                                     <%# Eval("status") %>
-
                                 </span>
-
                             </ItemTemplate>
-
                         </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Action">
-
                             <ItemTemplate>
-
-                                <asp:LinkButton
-                                    runat="server"
+                                <asp:LinkButton runat="server"
                                     CommandName="ApproveOrder"
                                     CommandArgument='<%# Eval("order_id") %>'
-                                    CssClass="btn btn-success btn-sm btn-action">
-
-                                    <i class="bi bi-check-circle"></i>
+                                    CssClass="btn btn-success btn-sm"
+                                    Visible='<%# Eval("status") != null && Eval("status").ToString() == "Pending" %>'>
                                     Approve
-
                                 </asp:LinkButton>
-
-                                <asp:LinkButton
-                                    runat="server"
+                                <asp:LinkButton runat="server"
                                     CommandName="RejectOrder"
                                     CommandArgument='<%# Eval("order_id") %>'
-                                    CssClass="btn btn-danger btn-sm ms-1 btn-action">
-
-                                    <i class="bi bi-x-circle"></i>
+                                    CssClass="btn btn-danger btn-sm ms-2"
+                                    Visible='<%# Eval("status") != null && Eval("status").ToString() == "Pending" %>'>
                                     Reject
-
                                 </asp:LinkButton>
-
                             </ItemTemplate>
-
                         </asp:TemplateField>
 
                     </Columns>
@@ -385,19 +257,17 @@ Inherits="Project_Tracking.admin.admin_orders" %>
 
     </div>
 
+</div>
+
 </form>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
-
     function toggleSidebar() {
-
-        document.getElementById("sidebar")
-            .classList.toggle("active");
-
-        document.getElementById("overlay")
-            .classList.toggle("active");
+        document.getElementById("sidebar").classList.toggle("active");
+        document.getElementById("overlay").classList.toggle("active");
     }
-
 </script>
 
 </body>

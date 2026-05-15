@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="cart.aspx.cs" Inherits="Project_Tracking.dealers.cart" %>
+﻿﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="cart.aspx.cs" Inherits="Project_Tracking.dealers.cart" %>
 
 <%@ Register TagPrefix="uc"
     TagName="Sidebar"
@@ -215,6 +215,15 @@
         </div>
     </div>
 </div>
-
+<div id="messageModal" class="confirm-modal" aria-hidden="true">
+    <div class="confirm-modal-content">
+        <div id="messageModalIcon" style="font-size:2rem; margin-bottom:8px;"></div>
+        <h3 id="messageModalTitle"></h3>
+        <p id="messageModalBody"></p>
+        <div class="confirm-actions">
+            <button type="button" class="btn-checkout" onclick="hideMessageModal()" style="width:100%;">OK</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>

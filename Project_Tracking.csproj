@@ -190,6 +190,7 @@
     <Content Include="dealers\benefits.aspx" />
     <Content Include="dealers\cart.aspx" />
     <Content Include="dealers\dashboard.aspx" />
+    <Content Include="dealers\notifications.aspx" />
     <Content Include="dealers\orders.aspx" />
     <Content Include="dealers\ranking.aspx" />
     <Content Include="dealers\transactions.aspx" />
@@ -297,6 +298,13 @@
     </Compile>
     <Compile Include="dealers\dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dealers\notifications.aspx.cs">
+      <DependentUpon>notifications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dealers\notifications.aspx.designer.cs">
+      <DependentUpon>notifications.aspx</DependentUpon>
     </Compile>
     <Compile Include="dealers\orders.aspx.cs">
       <DependentUpon>orders.aspx</DependentUpon>

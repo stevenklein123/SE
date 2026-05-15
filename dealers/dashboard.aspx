@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="dashboard.aspx.cs" Inherits="Project_Tracking.dealers.dashboard" %>
+﻿﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="dashboard.aspx.cs" Inherits="Project_Tracking.dealers.dashboard" %>
 <%@ Register TagPrefix="uc"
     TagName="Sidebar"
     Src="~/views/sidebar.ascx" %>
