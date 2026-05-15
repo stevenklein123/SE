@@ -10,6 +10,26 @@
     <link rel="icon" type="image/png" href="../assets/images/avon.png" />
     <link href="../assets/style/global.css" rel="stylesheet" />
     <link href="../assets/style/dashboard.css" rel="stylesheet" />
+    <%-- ADD THIS --%>
+    <style>
+        #transactionsList {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .transaction-card {
+            flex: 1 1 280px;
+            max-width: 100%;
+            box-sizing: border-box;
+            min-width: 0;
+        }
+
+        .transaction-card h3 {
+            word-break: break-all;
+            font-size: 0.95rem;
+        }
+    </style>
 </head>
 <body>
 

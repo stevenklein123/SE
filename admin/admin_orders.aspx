@@ -84,11 +84,6 @@ Inherits="Project_Tracking.admin.admin_orders" %>
             visibility: visible;
         }
 
-        /* NAVBAR */
-        .navbar-custom {
-            background: white;
-            box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
-        }
 
         /* CARD */
         .card-box {
@@ -166,7 +161,7 @@ Inherits="Project_Tracking.admin.admin_orders" %>
         <div class="mt-3">
 
             <div class="menu-item">
-                <a href="dashboard.aspx">
+                <a href="../admin/dashboard.aspx">
                     <i class="bi bi-speedometer2"></i>
                     DASHBOARD
                 </a>
@@ -187,7 +182,7 @@ Inherits="Project_Tracking.admin.admin_orders" %>
             </div>
 
             <div class="menu-item">
-                <a href="dealers.aspx">
+                <a href="dealers_monitoring.aspx">
                     <i class="bi bi-people"></i>
                     DEALERS
                 </a>
@@ -199,37 +194,30 @@ Inherits="Project_Tracking.admin.admin_orders" %>
                     ORDERS
                 </a>
             </div>
+<div class="menu-item"><a href="../auth_pages/logout.aspx"><i class="bi bi-box-arrow-right"></i> LOGOUT</a></div>
 
         </div>
 
     </div>
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-custom px-4 py-3 d-flex justify-content-between align-items-center">
+<nav class="navbar shadow-sm px-3 d-flex justify-content-between align-items-center" style="background-color: #e91e63 !important;">
 
-        <button type="button" class="btn" onclick="toggleSidebar()">
+    <button type="button" class="btn" onclick="toggleSidebar()" style="color: white;">
+        <i class="bi bi-list fs-3"></i>
+    </button>
 
-            <i class="bi bi-list fs-3" style="color: var(--avon-pink);"></i>
-
-        </button>
-
-        <div class="d-flex align-items-center gap-3">
-
-            <span class="text-muted d-none d-md-inline">
-                Orders Management
-            </span>
-
-            <div class="rounded-circle p-2"
-                 style="background: rgba(233,30,99,0.1);">
-
-                <i class="bi bi-cart-check fs-4"
-                   style="color: var(--avon-pink);"></i>
-
-            </div>
-
+    <div class="d-flex align-items-center gap-3">
+        <span class="d-none d-md-inline" style="color: white;">
+            Orders Management
+        </span>
+        <div class="rounded-circle p-2"
+             style="background: rgba(255,255,255,0.2);">
+            <i class="bi bi-cart-check fs-4" style="color: white;"></i>
         </div>
+    </div>
 
-    </nav>
+</nav>
 
     <!-- MAIN CONTENT -->
     <div class="container-fluid p-4">
@@ -239,24 +227,29 @@ Inherits="Project_Tracking.admin.admin_orders" %>
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
 
                 <div>
-
                     <h2 class="top-title mb-1">
                         <i class="bi bi-cart-check-fill text-primary"></i>
                         Orders Management
                     </h2>
-
                     <small class="text-muted">
                         Manage customer orders and references
                     </small>
-
                 </div>
 
-                <asp:TextBox
-                    ID="txtSearch"
-                    runat="server"
-                    CssClass="form-control"
-                    Width="250px"
-                    placeholder="Search Reference No" />
+                <div class="d-flex align-items-center gap-2">
+                    <asp:TextBox
+                        ID="txtSearch"
+                        runat="server"
+                        CssClass="form-control"
+                        Width="250px"
+                        placeholder="Search Reference No" />
+                    <asp:Button
+                        ID="btnSearch"
+                        runat="server"
+                        Text="Search"
+                        CssClass="btn btn-primary"
+                        OnClick="btnSearch_Click" />
+                </div>
 
             </div>
 
@@ -346,33 +339,29 @@ Inherits="Project_Tracking.admin.admin_orders" %>
                         </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Action">
-
                             <ItemTemplate>
 
                                 <asp:LinkButton
                                     runat="server"
                                     CommandName="ApproveOrder"
                                     CommandArgument='<%# Eval("order_id") %>'
-                                    CssClass="btn btn-success btn-sm btn-action">
-
+                                    CssClass="btn btn-success btn-sm btn-action"
+                                    Visible='<%# Eval("status").ToString() == "Pending" %>'>
                                     <i class="bi bi-check-circle"></i>
                                     Approve
-
                                 </asp:LinkButton>
 
                                 <asp:LinkButton
                                     runat="server"
                                     CommandName="RejectOrder"
                                     CommandArgument='<%# Eval("order_id") %>'
-                                    CssClass="btn btn-danger btn-sm ms-1 btn-action">
-
+                                    CssClass="btn btn-danger btn-sm ms-1 btn-action"
+                                    Visible='<%# Eval("status").ToString() == "Pending" %>'>
                                     <i class="bi bi-x-circle"></i>
                                     Reject
-
                                 </asp:LinkButton>
 
                             </ItemTemplate>
-
                         </asp:TemplateField>
 
                     </Columns>

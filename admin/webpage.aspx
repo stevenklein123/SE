@@ -15,97 +15,103 @@ Inherits="Project_Tracking.admin.webpage" %>
 
     <style>
         :root {
-            --avon-pink: #e91e63;
-            --sidebar-bg: #1e1e2d;
-        }
+    --avon-pink: #e4004b;
+    --avon-pink-dark: #a8003a;
+    --avon-pink-light: #f8bbd0;
+    --avon-pink-bg: #fce4ec;
+    --sidebar-bg: #1e1e2d;
+}
 
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+body {
+    background-color: #fce4ec;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-        /* SIDEBAR */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -280px;
-            width: 280px;
-            height: 100%;
-            background: var(--sidebar-bg);
-            color: #a2a3b7;
-            transition: all 0.3s ease;
-            z-index: 1050;
-        }
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100%;
+    background: var(--sidebar-bg);
+    color: #a2a3b7;
+    transition: all 0.3s ease;
+    z-index: 1050;
+}
 
-        .sidebar.active { left: 0; }
+.sidebar.active { left: 0; }
 
-        .sidebar-header {
-            padding: 2rem 1.5rem;
-            background: rgba(0,0,0,0.1);
-            color: white;
-            text-align: center;
-        }
+.sidebar-header {
+    padding: 2rem 1.5rem;
+    background: rgba(0,0,0,0.1);
+    color: white;
+    text-align: center;
+}
 
-        .menu-item a {
-            color: #a2a3b7;
-            text-decoration: none;
-            padding: 15px 25px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: 0.3s;
-        }
+.menu-item a {
+    color: #a2a3b7;
+    text-decoration: none;
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: 0.3s;
+}
 
-        .menu-item a:hover, .menu-item.active a {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--avon-pink);
-        }
+.menu-item a:hover, .menu-item.active a {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--avon-pink);
+}
 
-        .overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.4);
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.3s;
-            z-index: 1040;
-        }
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    z-index: 1040;
+}
 
-        .overlay.active { opacity: 1; visibility: visible; }
+.overlay.active { opacity: 1; visibility: visible; }
 
-        /* CARDS */
-        .card-stat {
-            background: white;
-            border: none;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-        }
+/* CARDS */
+.card-stat {
+    background: white;
+    border: none;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 0.125rem 0.25rem rgba(228, 0, 75, 0.08);
+}
 
-        .icon-box {
-            width: 48px; height: 48px; border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 24px; margin-bottom: 15px;
-        }
+.icon-box {
+    width: 48px; height: 48px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin-bottom: 15px;
+}
 
-        .bg-light-pink { background: rgba(233, 30, 99, 0.1); color: var(--avon-pink); }
-        .bg-light-purple { background: rgba(123, 97, 255, 0.1); color: #7b61ff; }
-        .bg-light-blue { background: rgba(56, 182, 255, 0.1); color: #38b6ff; }
-        .bg-light-orange { background: rgba(255, 174, 66, 0.1); color: #ffae42; }
+.bg-light-pink { background: #fce4ec; color: var(--avon-pink); }
+.bg-light-purple { background: rgba(123, 97, 255, 0.1); color: #7b61ff; }
+.bg-light-blue { background: rgba(56, 182, 255, 0.1); color: #38b6ff; }
+.bg-light-orange { background: rgba(255, 174, 66, 0.1); color: #ffae42; }
 
-        .stat-label { color: #6c757d; font-size: 0.9rem; font-weight: 600; }
-        .stat-value { font-size: 1.8rem; font-weight: 700; color: #343a40; }
+.stat-label { color: #6c757d; font-size: 0.9rem; font-weight: 600; }
+.stat-value { font-size: 1.8rem; font-weight: 700; color: #343a40; }
 
-        .hero-card {
-            background: linear-gradient(to right, #e91e63, #c2185b);
-            border-radius: 15px;
-            color: white;
-            padding: 30px;
-            border: none;
-            margin-bottom: 30px;
-        }
+.hero-card {
+    background: linear-gradient(to right, #e4004b, #a8003a);
+    border-radius: 15px;
+    color: white;
+    padding: 30px;
+    border: none;
+    margin-bottom: 30px;
+}
+
+h4 {
+    letter-spacing: 2px;
+}
     </style>
-</style>
 </head>
 
 <body>
@@ -118,24 +124,25 @@ Inherits="Project_Tracking.admin.webpage" %>
         <h4 class="mb-0 fw-bold" style="letter-spacing: 2px;">AVON ADMIN</h4>
     </div>
     <div class="mt-3">
-        <div class="menu-item active"><a href="dashboard.aspx"><i class="bi bi-speedometer2"></i> DASHBOARD</a></div>
+        <div class="menu-item"><a href="../admin/dashboard.aspx"><i class="bi bi-speedometer2"></i> DASHBOARD</a></div>
         <div class="menu-item"><a href="sales.aspx"><i class="bi bi-graph-up"></i> SALES ANALYTICS</a></div>
-        <div class="menu-item"><a href="webpage.aspx"><i class="bi bi-box-seam"></i> INVENTORY</a></div>
+        <div class="menu-item active"><a href="webpage.aspx"><i class="bi bi-box-seam"></i> INVENTORY</a></div>
         <div class="menu-item"><a href="dealers_monitoring.aspx"><i class="bi bi-people"></i> DEALERS</a></div>
         <div class="menu-item"><a href="admin_orders.aspx"><i class="bi bi-cart-check"></i> ORDERS</a></div>
+        <div class="menu-item"><a href="../auth_pages/logout.aspx"><i class="bi bi-box-arrow-right"></i> LOGOUT</a></div>
     </div>
 </div>
 
 <!-- NAV -->
-<nav class="navbar bg-white shadow-sm px-3">
-    <button type="button" class="btn" onclick="toggleSidebar()">
+<nav class="navbar shadow-sm px-3" style="background-color: #e91e63 !important;">
+    <button type="button" class="btn" onclick="toggleSidebar()" style="color: white;">
         <i class="bi bi-list fs-3"></i>
     </button>
-    <h5 class="mb-0">Inventory</h5>
+    <h5 class="mb-0" style="color: white;">Inventory</h5>
 
     <asp:Button ID="btnViewProduct" runat="server"
         Text="Refresh"
-        CssClass="btn btn-outline-secondary btn-sm"
+        CssClass="btn btn-outline-light btn-sm"
         OnClick="btnViewProduct_Click" />
 </nav>
 

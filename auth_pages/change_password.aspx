@@ -4,9 +4,9 @@
 <html>
 <head runat="server">
     <title>Change Password | AVON Dealer Portal</title>
-
+    <link rel="icon" type="image/png" href="../assets/images/avon.png" />
     <link href="<%= ResolveUrl("~/assets/style/change_password.css") %>" rel="stylesheet" />
-    <link href="../assets/script/register.css" rel="stylesheet"/>
+    <link href="../assets/style/register.css" rel="stylesheet"/>
 </head>
 
 <body>

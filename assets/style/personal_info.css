@@ -1,4 +1,4 @@
-﻿:root {
+﻿﻿:root {
     --avon-pink: #e91e63;
     --avon-dark: #222;
     --avon-light-pink: #fce4ec;
@@ -91,7 +91,7 @@ body {
 }
 
 #btnEdit, #btnSave {
-    background: var(--avon-pink);
+    background: #d81b60 !important;
     color: white;
 }
 

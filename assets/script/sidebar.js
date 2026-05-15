@@ -26,11 +26,56 @@
     if (closeBtn) closeBtn.addEventListener("click", closeSidebar);
 
     // ===== SETTINGS DROPDOWN =====
-    if (settingsItem) {
-        settingsItem.addEventListener("click", function (e) {
-            e.preventDefault();
-            settingsDropdown.classList.toggle("active");
-        });
-    }
+    if (settingsItem && settingsDropdown) {
 
+        const settingsArrow = document.getElementById("settingsArrow");
+
+        settingsItem.addEventListener("click", function (e) {
+
+            e.preventDefault();
+
+            settingsDropdown.classList.toggle("active");
+
+            const dropdownItems = settingsDropdown.querySelectorAll(".dropdown-item");
+
+            if (settingsDropdown.classList.contains("active")) {
+
+                if (settingsArrow) {
+                    settingsArrow.innerHTML = "▲";
+                }
+
+                dropdownItems.forEach(item => {
+                    item.style.color = "#8e6b7a";
+                });
+
+            } else {
+
+                if (settingsArrow) {
+                    settingsArrow.innerHTML = "▼";
+                }
+
+                dropdownItems.forEach(item => {
+                    item.style.color = "";
+                });
+
+            }
+
+        });
+
+}});
+
+fetch('notifications.aspx/GetUnreadCount', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: { 'Content-Type': 'application/json' },
+    body: '{}'
+})
+.then(r => r.json())
+.then(res => {
+    var count = res && res.d ? res.d : 0;
+    var badge = document.getElementById('sidebarNotifBadge');
+    if (badge && count > 0) {
+        badge.textContent = count;
+        badge.style.display = 'inline';
+    }
 });

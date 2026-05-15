@@ -1,0 +1,78 @@
+
+/* BEGIN EXTERNAL SOURCE */
+
+        .benefits-summary-card { background: #fff; border: 1px solid var(--border); border-radius: 15px; padding: 25px; margin-top: 20px; }
+        .current-rank-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 20px; }
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .benefit-item { display: flex; align-items: center; gap: 15px; padding: 15px; border-radius: 10px; background: var(--bg-body); }
+        .benefit-item.highlight { background: var(--primary-light); border: 1px solid var(--primary); }
+        .benefit-item .icon { font-size: 24px; }
+        .benefit-item label { display: block; font-size: 12px; color: var(--text-light); margin-bottom: 4px; }
+        .benefit-item h4 { margin: 0; font-size: 20px; color: var(--text); }
+        .next-goal-card { margin-top: 20px; background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; padding: 20px; border-radius: 12px; }
+        .badge.large { padding: 8px 20px; font-size: 16px; border-radius: 20px; color: white; font-weight: bold; }
+    
+/* END EXTERNAL SOURCE */
+
+/* BEGIN EXTERNAL SOURCE */
+span {
+color: var(--text-light);
+}
+/* END EXTERNAL SOURCE */
+
+/* BEGIN EXTERNAL SOURCE */
+h3 {
+margin: 5px 0 0 0;
+}
+/* END EXTERNAL SOURCE */
+
+/* BEGIN EXTERNAL SOURCE */
+h3 {
+margin:0;
+}
+/* END EXTERNAL SOURCE */
+
+/* BEGIN EXTERNAL SOURCE */
+p {
+margin: 10px 0 0 0;
+}
+/* END EXTERNAL SOURCE */
+
+/* BEGIN EXTERNAL SOURCE */
+
+        .benefits-summary-card { background: #fff; border: 1px solid var(--border); border-radius: 15px; padding: 25px; margin-top: 20px; }
+        .current-rank-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 20px; }
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .benefit-item { display: flex; align-items: center; gap: 15px; padding: 15px; border-radius: 10px; background: var(--bg-body); }
+        .benefit-item.highlight { background: var(--primary-light); border: 1px solid var(--primary); }
+        .benefit-item .icon { font-size: 24px; }
+        .benefit-item label { display: block; font-size: 12px; color: var(--text-light); margin-bottom: 4px; }
+        .benefit-item h4 { margin: 0; font-size: 20px; color: var(--text); }
+        .next-goal-card { margin-top: 20px; background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: white; padding: 20px; border-radius: 12px; }
+        .badge.large { padding: 8px 20px; font-size: 16px; border-radius: 20px; color: white; font-weight: bold; }
+    
+/* END EXTERNAL SOURCE */
+
+/* BEGIN EXTERNAL SOURCE */
+span {
+color: var(--text-light);
+}
+/* END EXTERNAL SOURCE */
+
+/* BEGIN EXTERNAL SOURCE */
+h3 {
+margin: 5px 0 0 0;
+}
+/* END EXTERNAL SOURCE */
+
+/* BEGIN EXTERNAL SOURCE */
+h3 {
+margin:0;
+}
+/* END EXTERNAL SOURCE */
+
+/* BEGIN EXTERNAL SOURCE */
+p {
+margin: 10px 0 0 0;
+}
+/* END EXTERNAL SOURCE */

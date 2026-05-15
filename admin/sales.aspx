@@ -104,7 +104,13 @@ Inherits="Project_Tracking.admin.sales" %>
             border: none;
             margin-bottom: 30px;
         }
-    </style>
+        #salesChart {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 
@@ -120,20 +126,21 @@ Inherits="Project_Tracking.admin.sales" %>
         <h4 class="mb-0 fw-bold" style="letter-spacing: 2px;">AVON ADMIN</h4>
     </div>
     <div class="mt-3">
-        <div class="menu-item active"><a href="dashboard.aspx"><i class="bi bi-speedometer2"></i> DASHBOARD</a></div>
-        <div class="menu-item"><a href="sales.aspx"><i class="bi bi-graph-up"></i> SALES ANALYTICS</a></div>
+        <div class="menu-item"><a href="dashboard.aspx"><i class="bi bi-speedometer2"></i> DASHBOARD</a></div>
+        <div class="menu-item active"><a href="sales.aspx"><i class="bi bi-graph-up"></i> SALES ANALYTICS</a></div>
         <div class="menu-item"><a href="webpage.aspx"><i class="bi bi-box-seam"></i> INVENTORY</a></div>
         <div class="menu-item"><a href="dealers_monitoring.aspx"><i class="bi bi-people"></i> DEALERS</a></div>
         <div class="menu-item"><a href="admin_orders.aspx"><i class="bi bi-cart-check"></i> ORDERS</a></div>
+        <div class="menu-item"><a href="../auth_pages/logout.aspx"><i class="bi bi-box-arrow-right"></i> LOGOUT</a></div>
     </div>
 </div>
 
 <!-- NAVBAR -->
-<nav class="navbar bg-white px-3">
-    <button type="button" class="btn" onclick="toggleSidebar()">
-        <i class="bi bi-list fs-3" style="color:var(--avon-pink)"></i>
+<nav class="navbar shadow-sm px-3" style="background-color: #e91e63 !important;">
+    <button type="button" class="btn" onclick="toggleSidebar()" style="color: white;">
+        <i class="bi bi-list fs-3"></i>
     </button>
-    <span class="fw-bold">SALES ANALYTICS</span>
+    <span class="fw-bold" style="color: white;">SALES ANALYTICS</span>
 </nav>
 
 <div class="container mt-4">
@@ -179,7 +186,9 @@ Inherits="Project_Tracking.admin.sales" %>
     </div>
 
     <!-- CHART -->
-    <canvas id="salesChart"></canvas>
+    <canvas id="salesChart">
+        
+    </canvas>
 
     <hr />
 
@@ -192,6 +201,7 @@ Inherits="Project_Tracking.admin.sales" %>
 </form>
 
 <script>
+
     function toggleSidebar() {
         document.getElementById("sidebar").classList.toggle("active");
         document.getElementById("overlay").classList.toggle("active");
@@ -200,18 +210,49 @@ Inherits="Project_Tracking.admin.sales" %>
     var labels = <%= chartLabels %>;
     var data = <%= chartData %>;
 
-    new Chart(document.getElementById("salesChart"), {
+    const ctx = document.getElementById("salesChart");
+
+    if (window.salesChartInstance) {
+        window.salesChartInstance.destroy();
+    }
+
+    window.salesChartInstance = new Chart(ctx, {
+
         type: 'line',
+
         data: {
             labels: labels,
+
             datasets: [{
-                label: 'Sales',
+                label: 'Sales Revenue',
                 data: data,
                 borderColor: '#e91e63',
-                tension: 0.3
+                backgroundColor: 'rgba(233, 30, 99, 0.15)',
+                fill: true,
+                tension: 0.4,
+                borderWidth: 3,
+                pointRadius: 5
             }]
+        },
+
+        options: {
+            responsive: true,
+
+            plugins: {
+                legend: {
+                    display: true
+                }
+            },
+
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
         }
+
     });
+
 </script>
 </body>
 </html>

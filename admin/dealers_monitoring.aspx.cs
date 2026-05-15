@@ -88,7 +88,7 @@ namespace Project_Tracking.admin
                 MySqlDataAdapter da = new MySqlDataAdapter(sql, con);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-
+                
                 // Add computed columns
                 dt.Columns.Add("computed_rank", typeof(string));
                 dt.Columns.Add("next_target", typeof(decimal));

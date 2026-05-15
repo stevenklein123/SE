@@ -190,10 +190,14 @@
     <Content Include="dealers\benefits.aspx" />
     <Content Include="dealers\cart.aspx" />
     <Content Include="dealers\dashboard.aspx" />
+    <Content Include="dealers\NewFile1.txt" />
+    <Content Include="dealers\notifications.aspx" />
     <Content Include="dealers\orders.aspx" />
     <Content Include="dealers\ranking.aspx" />
     <Content Include="dealers\transactions.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="uploads\337bb4bc-fd4b-4fa3-be6b-0d460a637ca4.jpg" />
+    <Content Include="uploads\6e4d6c8c-99f8-4880-8855-80e9d2f05623.jpg" />
     <Content Include="views\personal_info.aspx" />
     <Content Include="views\sidebar.ascx" />
     <Content Include="Web.config" />
@@ -297,6 +301,13 @@
     </Compile>
     <Compile Include="dealers\dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dealers\notifications.aspx.cs">
+      <DependentUpon>notifications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dealers\notifications.aspx.designer.cs">
+      <DependentUpon>notifications.aspx</DependentUpon>
     </Compile>
     <Compile Include="dealers\orders.aspx.cs">
       <DependentUpon>orders.aspx</DependentUpon>

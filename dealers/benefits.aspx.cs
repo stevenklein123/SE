@@ -73,6 +73,8 @@ namespace Project_Tracking.dealers
                         SetBenefits("Bronze", "0%", "₱0", "₱0", "₱0", "No data available");
                     }
                 }
+                lblNextGoal.InnerText = "DEBUG: totalSales = " + totalSales.ToString();
+                return; // remove these 2 lines after confirming
             }
         }
 

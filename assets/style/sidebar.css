@@ -72,3 +72,34 @@
     font-size: 24px;
     cursor: pointer;
 }
+
+.settings-dropdown {
+    margin-left: 15px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.hidden-dropdown {
+    display: none;
+}
+
+.dropdown-item {
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    background: rgba(255,255,255,0.08);
+    transition: 0.2s;
+}
+
+    .dropdown-item:hover {
+        background: rgba(255,255,255,0.15);
+    }
+
+.settings-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

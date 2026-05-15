@@ -124,18 +124,19 @@
         <div class="menu-item"><a href="webpage.aspx"><i class="bi bi-box-seam"></i> INVENTORY</a></div>
         <div class="menu-item"><a href="dealers_monitoring.aspx"><i class="bi bi-people"></i> DEALERS</a></div>
         <div class="menu-item"><a href="admin_orders.aspx"><i class="bi bi-cart-check"></i> ORDERS</a></div>
+        <div class="menu-item"><a href="../auth_pages/logout.aspx"><i class="bi bi-box-arrow-right"></i> LOGOUT</a></div>
     </div>
 </div>
 
 <!-- NAVBAR -->
-<nav class="navbar bg-white shadow-sm px-4 py-3 d-flex justify-content-between align-items-center">
-    <button type="button" class="btn" onclick="toggleSidebar()">
-        <i class="bi bi-list fs-3" style="color: var(--avon-pink);"></i>
+<nav class="navbar shadow-sm px-3 d-flex justify-content-between align-items-center" style="background-color: #e91e63 !important;">
+    <button type="button" class="btn" onclick="toggleSidebar()" style="color: white;">
+        <i class="bi bi-list fs-3"></i>
     </button>
     <div class="d-flex align-items-center gap-3">
-        <span class="text-muted d-none d-md-inline">Welcome back, Admin</span>
-        <div class="bg-light-pink rounded-circle p-2">
-            <i class="bi bi-person-circle fs-4"></i>
+        <span class="d-none d-md-inline" style="color: white;">Welcome back, Admin</span>
+        <div class="rounded-circle p-2" style="background: rgba(255,255,255,0.2);">
+            <i class="bi bi-person-circle fs-4" style="color: white;"></i>
         </div>
     </div>
 </nav>

@@ -38,31 +38,45 @@ namespace Project_Tracking.admin
 
         protected void btnSaveProduct_Click(object sender, EventArgs e)
         {
-            using (MySqlConnection con = new MySqlConnection(cs))
+            try
             {
-                con.Open();
-
-                string img = "";
-
-                if (fuProductImage.HasFile)
+                using (MySqlConnection con = new MySqlConnection(cs))
                 {
-                    string file = Guid.NewGuid() + Path.GetExtension(fuProductImage.FileName);
-                    string path = Server.MapPath("~/uploads/");
-                    fuProductImage.SaveAs(path + file);
-                    img = "/uploads/" + file;
+                    con.Open();
+
+                    string img = "";
+
+                    if (fuProductImage.HasFile)
+                    {
+                        string ext = Path.GetExtension(fuProductImage.FileName).ToLower();
+                        string file = Guid.NewGuid().ToString() + ext;
+                        string folderPath = Server.MapPath("~/uploads/");
+
+                        if (!Directory.Exists(folderPath))
+                            Directory.CreateDirectory(folderPath);
+
+                        fuProductImage.SaveAs(folderPath + file);
+                        img = "/uploads/" + file;
+                    }
+
+                    MySqlCommand cmd = new MySqlCommand(
+                        "INSERT INTO products(product_name,price,stock,description,image_path) VALUES(@n,@p,@s,@d,@i)", con);
+
+                    cmd.Parameters.AddWithValue("@n", txtProductName.Text);
+                    cmd.Parameters.AddWithValue("@p", txtPrice.Text);
+                    cmd.Parameters.AddWithValue("@s", txtStock.Text);
+                    cmd.Parameters.AddWithValue("@d", txtDescription.Text);
+                    cmd.Parameters.AddWithValue("@i", img);
+
+                    cmd.ExecuteNonQuery();
                 }
 
-                MySqlCommand cmd = new MySqlCommand(
-                    "INSERT INTO products(product_name,price,stock,description,image_path) VALUES(@n,@p,@s,@d,@i)", con);
-
-                cmd.Parameters.AddWithValue("@n", txtProductName.Text);
-                cmd.Parameters.AddWithValue("@p", txtPrice.Text);
-                cmd.Parameters.AddWithValue("@s", txtStock.Text);
-                cmd.Parameters.AddWithValue("@d", txtDescription.Text);
-                cmd.Parameters.AddWithValue("@i", img);
-
-                cmd.ExecuteNonQuery();
-                LoadProducts();
+                // Redirect instead of LoadProducts() to avoid crash
+                Response.Redirect(Request.Url.AbsolutePath);
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Error: " + ex.Message.Replace("'", "") + "');</script>");
             }
         }
 
